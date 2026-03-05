@@ -2,6 +2,29 @@
 
 A command-line tool to easily install and manage Bob-Shell extensions from git repositories or local paths.
 
+## Quick Start with Alias (Recommended)
+
+For easier usage, create an alias in your shell configuration:
+
+```bash
+alias gemini="npx -y https://github.com/IgorTodorovskiIBM/bob-gemini-extensions"
+```
+
+Then you can use it like the native Bob CLI:
+
+```bash
+# Install extensions from various sources
+gemini extensions install https://github.com/exa-labs/exa-mcp-server
+gemini extensions install ./local-extension
+gemini extensions install --force https://github.com/user/extension.git
+
+# Manage extensions
+gemini extensions uninstall extension-name
+gemini extensions list
+```
+
+**Browse available extensions:** https://geminicli.com/extensions/
+
 ## Quick Start with npx
 
 You can use this tool directly with `npx` without installing it globally:
