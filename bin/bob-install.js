@@ -137,6 +137,18 @@ program
           }
           
           console.log(chalk.green(`✔ Successfully installed ${extensionName}@${version}`));
+          
+          // Delete .bob-extension-install.json to prevent temp directory reference issues
+          const bobExtInstallPath = path.join(require('os').homedir(), '.bob', 'extensions', extensionName, '.bob-extension-install.json');
+          if (fs.existsSync(bobExtInstallPath)) {
+            fs.unlinkSync(bobExtInstallPath);
+            console.log(chalk.dim(`✓ Cleaned up extension metadata`));
+          }
+          
+          // Now cleanup temp directory since we removed the reference
+          if (tempDir && fs.existsSync(tempDir)) {
+            fs.rmSync(tempDir, { recursive: true, force: true });
+          }
         } catch (installError) {
           // Workaround for Bob CLI bug: Check if installation actually succeeded despite error
           const stdout = installError.stdout ? installError.stdout.toString() : '';
@@ -146,10 +158,19 @@ program
           if (stdout.includes('installed successfully') && stderr.includes('already installed')) {
             console.log(chalk.green(`✔ Successfully installed ${extensionName}@${version}`));
             console.log(chalk.dim(`(Workaround applied for Bob CLI duplicate detection bug)`));
-            // Cleanup temp directory (only for remote installs)
+            
+            // Delete .bob-extension-install.json to prevent temp directory reference issues
+            const bobExtInstallPath = path.join(require('os').homedir(), '.bob', 'extensions', extensionName, '.bob-extension-install.json');
+            if (fs.existsSync(bobExtInstallPath)) {
+              fs.unlinkSync(bobExtInstallPath);
+              console.log(chalk.dim(`✓ Cleaned up extension metadata`));
+            }
+            
+            // Now cleanup temp directory since we removed the reference
             if (tempDir && fs.existsSync(tempDir)) {
               fs.rmSync(tempDir, { recursive: true, force: true });
             }
+            
             return; // Exit successfully
           }
           
@@ -171,13 +192,10 @@ program
           if (errorOutput.includes('already installed')) {
             console.log(chalk.yellow(`\n⚠ Extension ${extensionName} is already installed`));
             console.log(chalk.dim(`To reinstall, first run: node bin/bob-install.js install --force ${extension}`));
-            // Cleanup temp directory even on "already installed" (only for remote installs)
-            if (tempDir && fs.existsSync(tempDir)) {
-              fs.rmSync(tempDir, { recursive: true, force: true });
-            }
+            // DO NOT cleanup - if already installed, the temp dir might be the active source
             return; // Exit gracefully
           } else {
-            // Cleanup before throwing (only for remote installs)
+            // On actual failure, cleanup temp directory
             if (tempDir && fs.existsSync(tempDir)) {
               fs.rmSync(tempDir, { recursive: true, force: true });
             }
@@ -185,10 +203,7 @@ program
           }
         }
         
-        // Cleanup temp directory (only for remote installs)
-        if (tempDir && fs.existsSync(tempDir)) {
-          fs.rmSync(tempDir, { recursive: true, force: true });
-        }
+        // DO NOT cleanup temp directory on success - Bob CLI needs it
         
       } catch (error) {
         spinner.fail(chalk.red(`Failed to install ${extensionName}`));
