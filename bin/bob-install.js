@@ -7,6 +7,12 @@ const path = require('path');
 const chalk = require('chalk');
 const ora = require('ora');
 
+// If first argument is "extensions", remove it to allow both:
+// bob-install install <ext> and bob-install extensions install <ext>
+if (process.argv[2] === 'extensions') {
+  process.argv.splice(2, 1);
+}
+
 program
   .name('bob-install')
   .description('Install and manage Bob extensions from git repositories');
