@@ -13,9 +13,15 @@ alias gemini="npx -y https://github.com/IgorTodorovskiIBM/bob-gemini-extensions"
 Then you can use it like the native Bob CLI:
 
 ```bash
-# Install extensions from various sources
+# Install popular extensions
+gemini extensions install https://github.com/gemini-cli-extensions/conductor
+gemini extensions install https://github.com/intellectronica/gemini-cli-skillz
 gemini extensions install https://github.com/exa-labs/exa-mcp-server
+
+# Install from local path
 gemini extensions install ./local-extension
+
+# Force reinstall
 gemini extensions install --force https://github.com/user/extension.git
 
 # Manage extensions
