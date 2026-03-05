@@ -8,20 +8,22 @@ You can use this tool directly with `npx` without installing it globally:
 
 ```bash
 # Install an extension from a local path
-npx github:IgorTodorovskiIBM/bob-gemini-extensions install ./path/to/extension
+npx -y github:IgorTodorovskiIBM/bob-gemini-extensions install ./path/to/extension
 
 # Install an extension from a GitHub URL
-npx github:IgorTodorovskiIBM/bob-gemini-extensions install https://github.com/user/extension.git
+npx -y github:IgorTodorovskiIBM/bob-gemini-extensions install https://github.com/user/extension.git
 
 # Install with force reinstall
-npx github:IgorTodorovskiIBM/bob-gemini-extensions install --force ./path/to/extension
+npx -y github:IgorTodorovskiIBM/bob-gemini-extensions install --force ./path/to/extension
 
 # Uninstall an extension
-npx github:IgorTodorovskiIBM/bob-gemini-extensions uninstall extension-name
+npx -y github:IgorTodorovskiIBM/bob-gemini-extensions uninstall extension-name
 
 # List installed extensions
-npx github:IgorTodorovskiIBM/bob-gemini-extensions list
+npx -y github:IgorTodorovskiIBM/bob-gemini-extensions list
 ```
+
+**Note:** The `-y` flag automatically answers "yes" to the npx installation prompt, allowing non-interactive usage.
 
 ## Installation
 
@@ -47,17 +49,17 @@ Install an extension from various sources:
 
 ```bash
 # From local path (relative or absolute)
-npx github:IgorTodorovskiIBM/bob-gemini-extensions install ./my-extension
-npx github:IgorTodorovskiIBM/bob-gemini-extensions install /absolute/path/to/extension
+npx -y github:IgorTodorovskiIBM/bob-gemini-extensions install ./my-extension
+npx -y github:IgorTodorovskiIBM/bob-gemini-extensions install /absolute/path/to/extension
 
 # From GitHub HTTPS URL
-npx github:IgorTodorovskiIBM/bob-gemini-extensions install https://github.com/user/extension.git
+npx -y github:IgorTodorovskiIBM/bob-gemini-extensions install https://github.com/user/extension.git
 
 # From GitHub SSH URL
-npx github:IgorTodorovskiIBM/bob-gemini-extensions install git@github.com:user/extension.git
+npx -y github:IgorTodorovskiIBM/bob-gemini-extensions install git@github.com:user/extension.git
 
 # Force reinstall (uninstalls first if already installed)
-npx github:IgorTodorovskiIBM/bob-gemini-extensions install --force ./my-extension
+npx -y github:IgorTodorovskiIBM/bob-gemini-extensions install --force ./my-extension
 ```
 
 ### Uninstall Command
@@ -65,7 +67,7 @@ npx github:IgorTodorovskiIBM/bob-gemini-extensions install --force ./my-extensio
 Remove an installed extension:
 
 ```bash
-npx github:IgorTodorovskiIBM/bob-gemini-extensions uninstall extension-name
+npx -y github:IgorTodorovskiIBM/bob-gemini-extensions uninstall extension-name
 ```
 
 ### List Command
@@ -73,7 +75,7 @@ npx github:IgorTodorovskiIBM/bob-gemini-extensions uninstall extension-name
 Show all installed extensions:
 
 ```bash
-npx github:IgorTodorovskiIBM/bob-gemini-extensions list
+npx -y github:IgorTodorovskiIBM/bob-gemini-extensions list
 ```
 
 ## Features
@@ -144,13 +146,13 @@ This means the installation succeeded despite Bob CLI reporting an error.
 ### Force Reinstall
 If an extension is truly stuck, use the `--force` flag:
 ```bash
-npx github:IgorTodorovskiIBM/bob-gemini-extensions install --force ./my-extension
+npx -y github:IgorTodorovskiIBM/bob-gemini-extensions install --force ./my-extension
 ```
 
 ### Check Installation
 Verify the extension is properly installed:
 ```bash
-npx github:IgorTodorovskiIBM/bob-gemini-extensions list
+npx -y github:IgorTodorovskiIBM/bob-gemini-extensions list
 ```
 
 ## Development
