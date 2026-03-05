@@ -1,0 +1,33 @@
+{
+  "name": "bob-extensions-installer",
+  "version": "1.0.0",
+  "description": "CLI tool to install and manage Bob-Shell extensions",
+  "main": "bin/bob-install.js",
+  "bin": {
+    "bob-install": "./bin/bob-install.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bob",
+    "bob-shell",
+    "extensions",
+    "cli",
+    "installer"
+  ],
+  "author": "Igor Todorovski",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IgorTodorovskiIBM/bob-gemini-extensions.git"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^11.0.0",
+    "ora": "^5.4.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
